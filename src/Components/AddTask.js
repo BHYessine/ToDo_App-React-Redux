@@ -16,7 +16,8 @@ function AddTask(props) {
     } else {
       props.addTask({
         id: Math.random(),
-        description: description,        
+        description: description,
+        isDone: false,
       });
       setDescription("");
     }
