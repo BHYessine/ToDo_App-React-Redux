@@ -16,8 +16,7 @@ function AddTask(props) {
     } else {
       props.addTask({
         id: Math.random(),
-        description: description,
-        
+        description: description,        
       });
       setDescription("");
     }
@@ -41,7 +40,7 @@ function AddTask(props) {
 
 const mapStateToProps = (state) => {
   return {
-    data: state
+    todos: state
   };
 };
 
