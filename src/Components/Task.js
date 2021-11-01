@@ -41,7 +41,7 @@ function Task(props) {
         />
         <MdDelete
           className="icon"
-          //onClick={() => removeTask(task.id)}
+          onClick={() => removeTask(task.id)}
           style={{ color: "rgb(230, 65, 65)" }}
         />
       </li>
