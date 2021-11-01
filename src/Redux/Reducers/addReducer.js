@@ -7,13 +7,9 @@ const initialState = data;
 export const addReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TASK:        
-        const newArray = [...state.todos];
-        newArray.isDone = false;
-        newArray.description = action.payload.description;
-        newArray.id = action.payload.id;
-      return {
+        return {
         ...state,
-        todos: newArray,        
+        todos: [...state.todos, action.payload]
       };
     default:
       return state;
