@@ -4,21 +4,21 @@ import { GoPlus } from "react-icons/go";
 import { addTask } from "../Redux/Actions/actions";
 
 function AddTask(props) {
-  console.log(props)
-  const [description, setDescription] = useState("")
+  const [description, setDescription] = useState("");
 
-  const handleChange= (e) =>{
-    setDescription(e.target.value)
-  } 
+  const handleChange = (e) => {
+    setDescription(e.target.value);
+  };
 
   const handleAdd = () => {
     if (description === "") {
       alert("Input is Empty!!");
     } else {
       props.addTask({
-            id : Math.random(),
-            description: description,
-            isDone: false,});
+        id: Math.random(),
+        description: description,
+        
+      });
       setDescription("");
     }
   };
@@ -26,14 +26,14 @@ function AddTask(props) {
   return (
     <div>
       <form className="addContainer">
-        <input 
-          type = "text" 
-          value = {description} 
-          onChange = {(e)=> handleChange(e)}
+        <input
+          type="text"
+          value={description}
+          onChange={(e) => handleChange(e)}
         />
-        <button className = "btn-add" onClick = {() => handleAdd()} >
+        <button className="btn-add" onClick={() => handleAdd()}>
           <GoPlus /> Add Task
-        </button>        
+        </button>
       </form>
     </div>
   );
@@ -41,13 +41,13 @@ function AddTask(props) {
 
 const mapStateToProps = (state) => {
   return {
-    data: state,
+    data: state
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addTask: obj => dispatch(addTask(obj)),
+    addTask: (obj) => dispatch(addTask(obj))
   };
 };
 
