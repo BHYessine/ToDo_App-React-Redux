@@ -6,11 +6,7 @@ import { addTask } from "../Redux/Actions/actions";
 function AddTask(props) {
   const [description, setDescription] = useState("");
 
-  const handleChange = (e) => {
-    setDescription(e.target.value);
-  };
-
-  const handleAdd = () => {
+    const handleAdd = () => {
     if (description === "") {
       alert("Input is Empty!!");
     } else {
@@ -28,10 +24,11 @@ function AddTask(props) {
       <form className="addContainer">
         <input
           type="text"
+          title="Enter Some ToDo"
           value={description}
-          onChange={(e) => handleChange(e)}
+          onChange={(e) => setDescription(e.target.value)}          
         />
-        <button className="btn-add" onClick={() => handleAdd()}>
+        <button className="btn-add" title="Add" onClick={() => handleAdd()}>
           <GoPlus /> Add Task
         </button>
       </form>
@@ -41,7 +38,7 @@ function AddTask(props) {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state
+    data: state
   };
 };
 

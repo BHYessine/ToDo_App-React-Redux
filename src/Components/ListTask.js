@@ -19,6 +19,7 @@ function ListTask(props) {
     <div className="listContainer">
       <div className="filter-btns">
         <button
+          title="All"
           onClick={() => setSort("all")}
           style={sort === "all" ? styleClicked : null}
         >
@@ -26,12 +27,14 @@ function ListTask(props) {
         </button>
 
         <button
+          title="Done"
           onClick={() => setSort("done")}
           style={sort === "done" ? styleClicked : null}
         >
           Done
         </button>
         <button
+          title="Not Done"
           onClick={() => setSort("notDone")}
           style={sort === "notDone" ? styleClicked : null}
         >

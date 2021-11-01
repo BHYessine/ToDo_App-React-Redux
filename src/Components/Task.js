@@ -22,6 +22,7 @@ function Task(props) {
       <li key={task.id}>
         <input 
           type="text" 
+          title=""
           value={input} 
           disabled={disabled} 
           onChange= {e => setInput(e.target.value)}
@@ -30,17 +31,20 @@ function Task(props) {
 
         <MdOutlineDone
           className="icon"
+          title="Done"
           onClick={() => doneTask(task.id)}
           style={{ color: "rgb(118, 216, 118)" }}
         />
 
         <MdOutlineEdit
           className="icon"
+          title="Edit"
           onClick={() => handleEdit()}
           style={{ color: "rgb(206, 194, 29)" }}
         />
         <MdDelete
           className="icon"
+          title="Delete"
           onClick={() => removeTask(task.id)}
           style={{ color: "rgb(230, 65, 65)" }}
         />
