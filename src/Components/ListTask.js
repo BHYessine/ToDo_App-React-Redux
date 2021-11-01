@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import Task from "./Task";
-import { doneTask } from "../Redux/Reducers/doneReducer"
-import { addTask } from "../Redux/Actions/actions"
-import { editTask } from "../Redux/Reducers/editReducer"
-import { removeTask } from '../Redux/Reducers/removeReducer'
+
+import { addTask, doneTask, editTask, removeTask } from "../Redux/Actions/actions"
+
 function ListTask(props) {
   console.log(props)
   const styleClicked = {
@@ -29,47 +28,47 @@ function ListTask(props) {
       </div>
 
       <ul>
-          {props.data.todos.length > 0 && sort === "notDone"
-            ? props.data.todos.map((item) => {
+          {props.data.add.todos.length > 0 && sort === "notDone"
+            ? props.data.add.todos.map((item) => {
                 return (
                   item.isDone === false && (           
                     <Task
                       key={item.id}
                       task={item}
-                      removeTask={props.remove}
-                      editTask={props.edit}
-                      doneTask={props.done}
+                      removeTask={props.removeTask}
+                      editTask={props.editTask}
+                      doneTask={props.doneTask}
                     />                        
                   )
                 );
               })
             : null}
           
-          {props.data.todos.length > 0 && sort === "done"
-            ? props.data.todos.map((item) => {
+          {props.data.add.todos.length > 0 && sort === "done"
+            ? props.data.add.todos.map((item) => {
                 return (
                   item.isDone === true && (
                     <Task
                       key={item.id}
                       task={item}
-                      removeTask={props.remove}
-                      editTask={props.edit}
-                      doneTask={props.done}
+                      removeTask={props.removeTask}
+                      editTask={props.editTask}
+                      doneTask={props.doneTask}
                     />       
                   )
                 );
               })
             : null}
           
-          {props.data.todos.length > 0 && sort === "all"
-            ? props.data.todos.map((item) => {
+          {props.data.add.todos.length > 0 && sort === "all"
+            ? props.data.add.todos.map((item) => {
                 return (
                   <Task
                     key={item.id}
                     task={item}
-                    removeTask={props.remove}
-                    editTask={props.edit}
-                    doneTask={props.done}
+                    removeTask={props.removeTask}
+                    editTask={props.editTask}
+                    doneTask={props.doneTask}
                   />       
                 );
               })
@@ -88,9 +87,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addTask: (obj) => dispatch(addTask(obj)),
-    // remove: (id) => dispatch(removeTask(id)),
-    // edit: (obj) => dispatch(editTask(obj)),
-    // done: (id) => dispatch(doneTask(id)),
+    //removeTask: (id) => dispatch(removeTask(id)),
+    editTask: (obj) => dispatch(editTask(obj)),
+    doneTask: (id) => dispatch(doneTask(id)),
   };
 };
 
