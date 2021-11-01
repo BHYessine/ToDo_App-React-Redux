@@ -1,58 +1,52 @@
-import React, { useRef } from "react";
-import { MdOutlineDone,MdOutlineEdit, MdDelete } from 'react-icons/md';
+import React, { useState } from "react";
+import { MdOutlineDone, MdOutlineEdit, MdDelete } from "react-icons/md";
 
-function Task(props) {
-  console.log(props)
-  const { task, editTask, removeTask, doneTask } = props;
-
-  // const inputRef = useRef(true);
-
-  // const update = (id, value, e) => {    
-  //   if (e.which === 13) {      
-  //     editTask({ id, task: value });
-  //     inputRef.current.disabled = true;
-  //   }
-  // }; 
-
-  // const editClick=()=> {    
-  //   inputRef.current.disabled = false;
-  //   inputRef.current.focus();    
-  // }
-  
+function Task(props) {  
+  const { task, editTask, removeTask, doneTask } = props; 
+  const [disabled,setDisabled] = useState(true)
+  const [input, setInput] = useState(task.description)
+  const handleEdit = () => {
+    setDisabled(false)
+  }
+  const handleChange = e => {
+    if (e.key === 'Enter') {
+      setDisabled(true)
+      editTask({
+        id: task.id,
+        description: input,
+      })      
+    }
+  }
   return (
     <div className="taskContainer">
-      <li key={task.id} >
+      <li key={task.id}>
         <input 
-          type="text"
-          value={task.description}
-          disabled = 'true'
-        />
-        {/* <textarea
-          // ref={inputRef}
-          // disabled={inputRef}
-          defaultValue={task.description}
-          // onKeyPress={(e) => update(task.id, inputRef.current.value, e)}
-        />      */}
-        
-          <MdOutlineDone
-            className="icon"
-            //onClick={() => doneTask(task.id)}
-            style={{ color: "rgb(118, 216, 118)" }}
-          />          
-             
-        <MdOutlineEdit 
+          type="text" 
+          value={input} 
+          disabled={disabled} 
+          onChange= {e => setInput(e.target.value)}
+          onKeyPress={handleChange}
+        />        
+
+        <MdOutlineDone
           className="icon"
-          //onClick={() => editClick()}
+          onClick={() => doneTask(task.id)}
+          style={{ color: "rgb(118, 216, 118)" }}
+        />
+
+        <MdOutlineEdit
+          className="icon"
+          onClick={() => handleEdit()}
           style={{ color: "rgb(206, 194, 29)" }}
-        />   
-        <MdDelete 
+        />
+        <MdDelete
           className="icon"
           //onClick={() => removeTask(task.id)}
           style={{ color: "rgb(230, 65, 65)" }}
         />
       </li>
     </div>
-    );
+  );
 }
 
 export default Task;
