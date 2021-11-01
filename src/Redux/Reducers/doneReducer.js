@@ -1,23 +1,20 @@
 import { DONE_TASK } from "../Constants/types";
 import { data } from "../../Components/data";
 
-const initialState = {data};
+const initialState = data;
 
-export const doneTask = (state = initialState, action) => {
-    switch (action.type) {
-        case DONE_TASK:
-            return {
-                data : state.data.map( (item) => {
-                            if (item.id === action.payload) { 
-                                return {
-                                    ...item,                                    
-                                    isDone: true
-                                }
-                            }
-                            return state
-                        })
-            }    
-        default:
-            return state
+export const doneReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case DONE_TASK: {
+      const index = state.todos.findIndex((todo) => todo.id === action.payload);
+      const newArray = [...state.todos];
+      newArray[index].isDone = true;
+      return {
+        ...state,
+        todos: newArray
+      };
     }
-}
+    default:
+      return state;
+  }
+};
