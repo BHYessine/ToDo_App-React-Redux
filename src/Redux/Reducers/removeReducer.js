@@ -3,18 +3,20 @@ import { data } from "../../Components/data";
 
 const initialState = data;
 
-export const removeTask = (state = initialState, action) => {
-    console.log(action.type)
+export const removeReducer = (state = initialState, action) => {
+    
     switch (action.type) {
         case REMOVE_TASK:
-            return {
-                data : state.data.filter( (item) => 
+            
+            return {              
+              ...state,
+                todos : state.todos.filter( (item) => 
                             item.id !== action.payload
                         )
             }    
         default:
-            return state.data
+            return state
     }
 }
 
-export default removeTask
+export default removeReducer
