@@ -1,54 +1,49 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { GoPlus } from "react-icons/go";
 import { addTask } from "../Redux/Actions/actions";
 
-function AddTask(props) {
-  console.log(props)
-  const [description, setDescription] = useState("")
+function AddTask() {
+  
+  const [description, setDescription] = useState("");
 
-  const handleChange= (e) =>{
-    setDescription(e.target.value)
-  } 
+  const dispatch = useDispatch()
 
-  const handleAdd = () => {
+  const handleAdd = e => {
+    const task={
+      id: Math.random(),
+      description: description,
+      isDone: false,
+    }
     if (description === "") {
       alert("Input is Empty!!");
     } else {
-      props.addTask({
-            id : Math.random(),
-            description: description,
-            isDone: false,});
-      setDescription("");
+      dispatch(addTask(task));      
     }
+    setDescription(""); 
+    
+    e.preventDefault();
+       
   };
 
   return (
     <div>
       <form className="addContainer">
-        <input 
-          type = "text" 
-          value = {description} 
-          onChange = {(e)=> handleChange(e)}
+        <input
+          type="text"
+          title="Enter Some ToDo"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}          
         />
-        <button className = "btn-add" onClick = {() => handleAdd()} >
+        <button 
+          className="btn-add" 
+          title="Add" 
+          onClick={() => handleAdd()}>
           <GoPlus /> Add Task
-        </button>        
+        </button>
       </form>
     </div>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    data: state,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addTask: obj => dispatch(addTask(obj)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddTask);
+export default AddTask;

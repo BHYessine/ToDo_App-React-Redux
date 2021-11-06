@@ -1,16 +1,7 @@
-import { createStore, combineReducers } from "@reduxjs/toolkit";
-import { addReducer } from "../Reducers/addReducer"
-// import { doneTask } from "../Reducers/doneReducer"
-// import { editTask } from "../Reducers/editReducer"
-//import { removeTask } from "../Reducers/removeReducer"
+import { createStore } from "@reduxjs/toolkit";
 
-// const rootReducer = combineReducers({
-//     add: addReducer,
-//     // done: doneTask,
-//     // edit: editTask,
-//     //remove: removeTask
-// })
+import { reducers } from "../Reducers/reducers";
 
-const store = createStore(addReducer);
+const store = createStore(reducers);
 
 export default store;
