@@ -15,16 +15,12 @@ function AddTask() {
       description: description,
       isDone: false,
     }
-    if (description === "") {
+    if (description !== ""){
+      dispatch(addTask(task));
+      setDescription(""); 
+    } else {    
       alert("Input is Empty!!");
-    } else {
-      dispatch(addTask(task));      
-    }
-    setDescription(""); 
-    
-    e.preventDefault();
-       
-  };
+    }    
 
   return (
     <div>
