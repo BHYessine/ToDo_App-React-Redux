@@ -10,6 +10,7 @@ function AddTask() {
   const dispatch = useDispatch()
 
   const handleAdd = e => {
+    e.preventDefault()
     const task={
       id: Math.random(),
       description: description,
@@ -34,7 +35,7 @@ function AddTask() {
         <button 
           className="btn-add" 
           title="Add" 
-          onClick={() => handleAdd()}>
+          onClick={handleAdd}>
           <GoPlus /> Add Task
         </button>
       </form>
